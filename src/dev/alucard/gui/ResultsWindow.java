@@ -34,6 +34,7 @@ public class ResultsWindow extends JFrame implements ActionListener {
 
     public ResultsWindow(MainMenuWindow mainMenu, DatabaseCRUD crud, List<Teacher> teachers) {
 
+        this.crud = crud;
         this.teachers = teachers;
         this.setTitle("Results Form");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -134,36 +135,31 @@ public class ResultsWindow extends JFrame implements ActionListener {
         }
         if(e.getSource() == firstButton) {
             i = 0;
-            teacherIDField.setText(String.valueOf(teachers.get(i).getTeacherId()));
-            firstNameField.setText(teachers.get(i).getFirstName());
-            lastNameField.setText(teachers.get(i).getLastName());
-            availabilityField.setText(String.valueOf(teachers.get(i).getHoursAvailablePerWeek()));
-
+            navigateTeacher();
         }
         if(e.getSource() == nextButton) {
             if (i < teachers.size()-1) {
-                teacherIDField.setText(String.valueOf(teachers.get(++i).getTeacherId()));
-                firstNameField.setText(teachers.get(i).getFirstName());
-                lastNameField.setText(teachers.get(i).getLastName());
-                availabilityField.setText(String.valueOf(teachers.get(i).getHoursAvailablePerWeek()));
+                i = i + 1;
+                navigateTeacher();
             }
         }
         if(e.getSource() == previousButton) {
             if (i > 0){
-                teacherIDField.setText(String.valueOf(teachers.get(--i).getTeacherId()));
-                firstNameField.setText(teachers.get(i).getFirstName());
-                lastNameField.setText(teachers.get(i).getLastName());
-                availabilityField.setText(String.valueOf(teachers.get(i).getHoursAvailablePerWeek()));
+                i = i - 1;
+                navigateTeacher();
             }
         }
         if(e.getSource() == lastButton) {
             i = teachers.size() - 1;
-            teacherIDField.setText(String.valueOf(teachers.get(i).getTeacherId()));
-            firstNameField.setText(teachers.get(i).getFirstName());
-            lastNameField.setText(teachers.get(i).getLastName());
-            availabilityField.setText(String.valueOf(teachers.get(i).getHoursAvailablePerWeek()));
-
+            navigateTeacher();
         }
+    }
+
+    public void navigateTeacher () {
+        teacherIDField.setText(String.valueOf(teachers.get(i).getTeacherId()));
+        firstNameField.setText(teachers.get(i).getFirstName());
+        lastNameField.setText(teachers.get(i).getLastName());
+        availabilityField.setText(String.valueOf(teachers.get(i).getHoursAvailablePerWeek()));
     }
 }
 
