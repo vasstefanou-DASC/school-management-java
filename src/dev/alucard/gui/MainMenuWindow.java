@@ -31,8 +31,8 @@ public class MainMenuWindow extends JFrame implements ActionListener {
 
             public void windowOpened(WindowEvent event) {
                 String url = "jdbc:mysql://localhost:3306/school";
-                String username = "devuser";
-                String password = "j55Willbar6anek#2";
+                String username = System.getenv("SQLUSERNAME");
+                String password = System.getenv("SQLPASSWORD");
                 try {
                     connection = DriverManager.getConnection(url, username, password);
                     crud = new DatabaseCRUD(connection);
