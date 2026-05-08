@@ -49,6 +49,7 @@ public class ResultsWindow extends JFrame implements ActionListener {
         teacherIDField = new JTextField();
         teacherIDField.setBounds(120, 20, 140, 30);
         teacherIDField.setEditable(false);
+        teacherIDField.setFocusable(false);
         firstNameLabel = new JLabel("First Name: ");
         firstNameLabel.setBounds(40, 70, 80, 30);
         firstNameField = new JTextField();
@@ -131,7 +132,8 @@ public class ResultsWindow extends JFrame implements ActionListener {
             dispose();
         }
         if(e.getSource() == coursesButton) {
-
+            this.setVisible(false);
+            new CoursesWindow(crud,teachers.get(i));
         }
         if(e.getSource() == firstButton) {
             i = 0;

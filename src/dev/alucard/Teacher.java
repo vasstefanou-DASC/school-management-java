@@ -28,6 +28,11 @@ public class Teacher {
     public int getHoursAvailablePerWeek() {
         return hoursAvailablePerWeek;
     }
+
+    public void setHoursAvailablePerWeek(int hoursAvailablePerWeek) {
+        this.hoursAvailablePerWeek = hoursAvailablePerWeek;
+    }
+
     @Override
     public String toString() {
         return "%s %s is available %d hours per week to teach courses with id:%d."

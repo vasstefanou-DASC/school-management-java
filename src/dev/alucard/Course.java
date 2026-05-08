@@ -27,10 +27,9 @@ public class Course {
     public int getTeacherId() {
         return teacherId;
     }
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
+    public int getCourseId() {
+        return courseId;
     }
-
     @Override
     public String toString() {
         return "Course named %s id:%d runs in semester number %d for %d hours per week and is taught by teacher with id:%d."

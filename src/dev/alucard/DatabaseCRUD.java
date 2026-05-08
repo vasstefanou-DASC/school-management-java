@@ -23,6 +23,9 @@ public class DatabaseCRUD {
     private static final String SEARCH_TEACHER_BY_LASTNAME = """
             SELECT * FROM school.teachers WHERE lastname LIKE ?""";
 
+    private static final String SEARCH_COURSE_BY_TITLE = """
+            SELECT * FROM school.courses WHERE coursetitle = ?""";
+
     private static final String UPDATE_TEACHER = """
             UPDATE school.teachers SET firstname = ?, lastname = ?,
             available = ? WHERE teacher_id = ?""";
@@ -173,6 +176,21 @@ public class DatabaseCRUD {
         return courses;
     }
 
+    public Course findCourseByTitle(String courseTitle) {
+        try (PreparedStatement psCourse = connection.prepareStatement(SEARCH_TEACHER_BY_LASTNAME)) {
+            psCourse.setString(1,courseTitle);
+            ResultSet rs = psCourse.executeQuery();
+            if (rs.next()) {
+                return (new Course(rs.getInt(1),rs.getString(2),
+                        rs.getInt(3),rs.getInt(4),rs.getInt(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Unsuccessful Search");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void removeTeacherFromCourse (String firstName,String lastName,int availability,int teacherId,int hoursPerWeek,int courseId) {
         try (PreparedStatement psRemove = connection.prepareStatement(REMOVE_TEACHER_FROM_COURSE)) {
             updateTeacherData(firstName,lastName,availability+hoursPerWeek,teacherId);
@@ -206,10 +224,4 @@ public class DatabaseCRUD {
             connection.setAutoCommit(true);
         }
     }
-
-
-
-
-
-
 }
