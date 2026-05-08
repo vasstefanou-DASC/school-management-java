@@ -138,7 +138,7 @@ public class DatabaseCRUD {
     }
 
     public void updateTeacherData (int availability,int teacherId) {
-        try (PreparedStatement psUpdate = connection.prepareStatement(UPDATE_TEACHER)) {
+        try (PreparedStatement psUpdate = connection.prepareStatement(UPDATE_AVAILABILITY)) {
             psUpdate.setInt(1,availability);
             psUpdate.setInt(2,teacherId);
             int rows = psUpdate.executeUpdate();
@@ -177,7 +177,7 @@ public class DatabaseCRUD {
     }
 
     public Course findCourseByTitle(String courseTitle) {
-        try (PreparedStatement psCourse = connection.prepareStatement(SEARCH_TEACHER_BY_LASTNAME)) {
+        try (PreparedStatement psCourse = connection.prepareStatement(SEARCH_COURSE_BY_TITLE)) {
             psCourse.setString(1,courseTitle);
             ResultSet rs = psCourse.executeQuery();
             if (rs.next()) {

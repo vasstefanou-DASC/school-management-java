@@ -25,6 +25,7 @@ public class CoursesWindow extends JFrame implements ActionListener {
     private JButton removeButton;
     private JButton addButton;
     private JDialog dialog;
+    private JPanel dialogPanel;
     private JLabel courseTitleLabel;
     private JTextField courseTitleField;
     private JButton confirmButton;
@@ -96,9 +97,10 @@ public class CoursesWindow extends JFrame implements ActionListener {
 
     private void optionAddCourseWindow() {
         dialog = new JDialog(this,"Add Course",true);
+        dialogPanel = new JPanel();
+        dialogPanel.setPreferredSize(new Dimension(300,120));
+        dialogPanel.setLayout(null);
         dialog.setResizable(false);
-        dialog.setLayout(null);
-        dialog.setSize(new Dimension(300,120));
 
         courseTitleLabel = new JLabel("Course Title: ");
         courseTitleLabel.setBounds(40, 20, 80, 30);
@@ -108,9 +110,12 @@ public class CoursesWindow extends JFrame implements ActionListener {
         confirmButton.setBounds(100, 70, 100, 30);
         confirmButton.addActionListener(event -> confirmButtonClicked());
 
-        dialog.add(courseTitleLabel);
-        dialog.add(courseTitleField);
-        dialog.add(confirmButton);
+        dialogPanel.add(courseTitleLabel);
+        dialogPanel.add(courseTitleField);
+        dialogPanel.add(confirmButton);
+        dialog.add(dialogPanel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
     }
 
